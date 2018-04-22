@@ -106,7 +106,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawText("id: " + mFaceId, x + ID_X_OFFSET, y + ID_Y_OFFSET, mIdPaint);
         canvas.drawText("Euler Y: " + String.format("%.2f", face.getEulerY()), x - ID_X_OFFSET, y - ID_Y_OFFSET, mIdPaint);
         canvas.drawText("Euler Z: " + String.format("%.2f", face.getEulerZ()), x + ID_X_OFFSET * 2, y + ID_Y_OFFSET * 2, mIdPaint);
-        if(face.getEulerZ() < 0){
+        if(face.getEulerY() < -14 && face.getEulerY() < 18 || face.getEulerY() > 52 ){
             counter+=1;
             if(counter > 5 && !isViewed){
                 faceTrackerActivity.alertUser();
@@ -116,6 +116,11 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         }
         Log.d("FaceTrackerActivity","Euler Y: "+face.getEulerY());
         Log.d("FaceTrackerActivity","Euler Z: "+face.getEulerZ());
+        Log.d("Landmarks","# Landmarks: "+face.getLandmarks().size());
+
+        for(int i = 0; i < face.getLandmarks().size(); i++) {
+            Log.d("Landmark: ",face.getLandmarks().get(i).getType()+"");
+        }
 
         // Draws a bounding box around the face.
         float xOffset = scaleX(face.getWidth() / 2.0f);

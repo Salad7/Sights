@@ -269,6 +269,7 @@ public final class FaceTrackerActivity extends AppCompatActivity
         Context context = getApplicationContext();
         FaceDetector detector = new FaceDetector.Builder(context)
                 .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
+                .setMode(FaceDetector.ACCURATE_MODE)
                 .build();
         graphicFaceTrackerFactory = new GraphicFaceTrackerFactory();
         detector.setProcessor(
@@ -431,7 +432,9 @@ public final class FaceTrackerActivity extends AppCompatActivity
 
         GraphicFaceTracker(GraphicOverlay overlay) {
             mOverlay = overlay;
+
             mFaceGraphic = new FaceGraphic(overlay,FaceTrackerActivity.this);
+
         }
 
         public void removeBool(){
